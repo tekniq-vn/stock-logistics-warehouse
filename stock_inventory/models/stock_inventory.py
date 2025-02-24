@@ -408,9 +408,14 @@ class InventoryAdjustmentsGroup(models.Model):
             {
                 "search_default_to_do": 1,
                 "inventory_id": self.id,
+                "default_current_inventory_id": self.id,
+                "default_stock_inventory_ids": [(4, self.id)],
                 "default_to_do": True,
+                "default_user_id": self.env.user.id,
             }
         )
+        if len(self.location_ids) == 1:
+            context.update({'default_location_id': self.location_ids.id})
         result.update(
             {
                 "domain": [
