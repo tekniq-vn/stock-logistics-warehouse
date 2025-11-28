@@ -326,7 +326,6 @@ class InventoryAdjustmentsGroup(models.Model):
                 raise ValidationError(
                     error_message % {"names": names, "blocking_names": blocking_names}
                 )
-
         quants = self._get_quants(self.location_ids)
         self.write(
             {
